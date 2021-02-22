@@ -11,7 +11,8 @@ export class EmployeeService {
   selectedEmployee: Employee = {
     fullName:'',
     email:'',
-    password:''
+    password:'',
+    workStatus: true
   };
 
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True'})
@@ -63,4 +64,15 @@ export class EmployeeService {
    signOut(): void {
     localStorage.removeItem('token');
   }
+
+ setEmployeeInfo(employee: Employee) {
+   localStorage.setItem('employee',JSON.stringify(employee))
+ }
+
+ getEmployeeInfo(){
+   return JSON.parse(localStorage.getItem('employee'))
+ }
+ postWork( value:boolean ) {
+  return this.http.post(environment.apiBaseUrl + '/work', value);
+}
 }

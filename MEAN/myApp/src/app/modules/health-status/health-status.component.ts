@@ -12,6 +12,7 @@ export class HealthStatusComponent implements OnInit {
 
   ngOnInit() {}
   healthvalue: number = 0;
+  parentreload: boolean= false;
   SethealthValue(event) {
     this.healthvalue = event;
   }
@@ -20,10 +21,13 @@ export class HealthStatusComponent implements OnInit {
   this.healthService.postHealth({healthvalue: value}).subscribe(
     res => {
       console.log(res)
+      this.parentreload=!this.parentreload;
     },
     err => {
     }
   );
+
+
 
 }
 

@@ -10,6 +10,7 @@ module.exports.register = (req, res, next) => {
   employee.fullName = req.body.fullName;
   employee.email = req.body.email;
   employee.password = req.body.password;
+  employee.workstatus = true;
   employee.save((err, doc) => {
     if (!err) {
       res.send(doc);
@@ -38,7 +39,7 @@ module.exports.home = (req, res, next) => {
     else
       return res
         .status(200)
-        .json({ status: true, user: _.pick(employee, ["fullName", "email"]) });
+        .json({ status: true, user: _.pick(employee, ["fullName", "email","workstatus"]) });
   });
 };
 
@@ -48,7 +49,7 @@ module.exports.health = (req, res, next) => {
   health.employee_name=req.fullName;
   health.employee_email=req.email;
   health.healthvalue = req.body.healthvalue;
-  health.date = Date.now().toISOString;
+  health.date = Date.now();
   health.save((err, doc) => {
     if (!err) {
       res.send(doc);
@@ -56,12 +57,21 @@ module.exports.health = (req, res, next) => {
   });
 };
 
-module.exports.work = (req, res, next) => {
-  employee.workstatus=req.body.workstatus
-  
-  employee.save((err, doc) => {
+module.exports.healthHistory = (req, res, next) => {
+  HealthStatus.find( {employee_id:req._id} ).sort({'date': -1})
+  .limit(7)
+  .exec(function(err, health) {
     if (!err) {
-      res.send(doc);
+      let formatData = health.map(e=>{ return {healthValue: e.healthvalue, date: e.date};})
+      res.status(200).json({ status: true, healthHistory: formatData  });
     } else return next(err);
+       
   });
+}
+
+module.exports.work = (req, res, next) => {
+  EmployeesLogin.findOneAndUpdate( {_id:req._id},{workstatus: !workstatus }, {
+    new: true
+  }); 
+  console.log(res);
 };

@@ -8,13 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-profile.component.css']
 })
 export class EmployeeProfileComponent implements OnInit {
+
   constructor() {
   }
 
+
+
   ngOnInit() {
+
+
   }
-
-
 
 }
 

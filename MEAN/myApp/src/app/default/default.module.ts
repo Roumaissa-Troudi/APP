@@ -9,9 +9,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HealthStatusComponent } from '../modules/health-status/health-status.component';
 import { MatButtonModule } from '@angular/material/button';
+import { WorkstatusComponent } from '../modules/workstatus/workstatus.component';
 
 @NgModule({
-  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent],
+  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent],
   imports: [
     CommonModule,
     SharedModule,

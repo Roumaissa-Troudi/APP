@@ -9,6 +9,8 @@ router.post('/register', ctrlemployee.register);
 router.post('/authenticate', ctrlemployee.authenticate);
 router.get('/dashboard',jwtHelper.verifyJwtToken, ctrlemployee.home);
 router.post('/health',jwtHelper.verifyJwtToken, ctrlemployee.health);
+router.get('/healtHistory',jwtHelper.verifyJwtToken, ctrlemployee.healthHistory);
+
 router.post('/work',jwtHelper.verifyJwtToken, ctrlemployee.work);
 
 

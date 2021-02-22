@@ -1,1 +1,13 @@
-<p>workstatus works!</p>
+<mat-toolbar class="page-header" role="heading">
+  <h1>Work Status</h1>
+</mat-toolbar>
+<div class="chart">
+  <div class="chart__header">
+    <p class="chart__title">Are you available ?</p>
+  </div>
+  <div class="chart__content">
+    <div class="slider">
+      <app-button-slide (healthvalue)="SetworkValue($event)"></app-button-slide>
+    </div>
+  </div>
+</div>

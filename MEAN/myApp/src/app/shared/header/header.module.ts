@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { UserComponent } from './user/user.component';
 import { RouterModule } from '@angular/router';
+import { EmployeeService } from '../employee.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,9 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatInputModule,
     MatBadgeModule,RouterModule
+  ],
+  providers: [
+    EmployeeService
   ]
 })
 export class HeaderModule { }

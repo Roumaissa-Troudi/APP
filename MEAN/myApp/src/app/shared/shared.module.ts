@@ -18,10 +18,18 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SliderComponent } from './widgets/slider/slider.component';
 import { ValueTableComponent } from '../modules/health-status/value-table/value-table.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ButtonSlideComponent } from './widgets/button-slide/button-slide.component';
 
 @NgModule({
-  declarations: [FooterComponent, SidebarComponent, SliderComponent,ValueTableComponent],
+  declarations: [
+    FooterComponent,
+    SidebarComponent,
+    SliderComponent,
+    ValueTableComponent,
+    ButtonSlideComponent,
+  ],
   imports: [
     FlexLayoutModule,
     MatToolbarModule,
@@ -36,10 +44,18 @@ import {MatTableModule} from '@angular/material/table';
     FormsModule,
     MatSidenavModule,
     HeaderModule,
-    MatCardModule,NgxSliderModule,
-    MatTableModule
-
+    MatCardModule,
+    NgxSliderModule,
+    MatTableModule,
+    MatSlideToggleModule,
   ],
-  exports: [FooterComponent, SidebarComponent, HeaderModule,SliderComponent,ValueTableComponent],
+  exports: [
+    FooterComponent,
+    SidebarComponent,
+    HeaderModule,
+    SliderComponent,
+    ValueTableComponent,
+    ButtonSlideComponent,
+  ],
 })
 export class SharedModule {}

@@ -15,5 +15,12 @@ export class HealthStatus {
 
   postHealth(health_status: healthstatus) {
     return this.http.post(environment.apiBaseUrl + '/health', health_status);
+
   }
+
+  getHealthHistory() {
+    return this.http.get(environment.apiBaseUrl + '/healtHistory');
+  }
+
+
 }
