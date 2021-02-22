@@ -1,0 +1,37 @@
+<mat-toolbar class="page-header" role="heading">
+  <h1>Health Status</h1>
+</mat-toolbar>
+
+<div class="chart">
+  <div class="chart__header">
+    <p class="chart__title">Are you overburdened ?</p>
+  </div>
+  <div class="chart__content">
+    <div class="slider">
+      <app-slider (healthvalue)="SethealthValue($event)"></app-slider>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="value">Daily Value: {{ healthvalue }}</div>
+    <br />
+    <br />
+    <p>
+      <button
+        class="chart__button"
+        mat-raised-button
+        color="primary"
+        (click)="submit()">
+        submit
+      </button>
+    </p>
+
+    <br />
+    <br />
+
+
+        <app-value-table></app-value-table>
+
+  </div>
+</div>
