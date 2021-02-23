@@ -12,7 +12,7 @@ import { Employee } from '../../employee.model';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit{
-
+check;
   @Input() user: Employee;
   @Output() signOut: EventEmitter<void> = new EventEmitter<void>();
 
@@ -20,7 +20,7 @@ constructor(public employeeservice: EmployeeService, private router: Router){}
   public routes: typeof routes = routes;
   public flatlogicEmail: string ;
  ngOnInit() {
-
+  this.check=this.employeeservice.getEmployeeInfo();
 
   }
   public signOutEmit(): void {

@@ -28,8 +28,13 @@ module.exports.authenticate = (req, res, err) => {
       return res.status(400).json(err);
       console.log(err);
     } else if (user) return res.status(200).json({ token: user.generateJwt() });
-    else {return res.status(404).json(info);
-      console.log(res)}
+    else {
+      console.log(err);
+      console.log(info);
+      console.log(user);
+      return res.status(404).json(info);
+      console.log(res);
+    }
   })(req, res);
 };
 
@@ -83,5 +88,62 @@ module.exports.work = (req, res, next) => {
         res.send(doc);
       } else return next(err);
     });
+  });
+};
+
+module.exports.search = (req, res, next) => {
+  var startDate = new Date(new Date().setHours(00, 00, 00));
+  var endDate = new Date(new Date().setHours(23, 59, 59));
+  console.log(startDate);
+  console.log(endDate);
+  HealthStatus.find(
+    {
+      date: {
+        $gte: startDate,
+        $lt: endDate,
+      },
+      healthvalue: {
+        $gte: 0,
+        $lt: 5,
+      },
+      employee_id: { $ne: req._id },
+    },
+    "employee_id"
+  ).sort({ healthvalue:-1 }).exec((err, idList) => {
+    if (!err) {
+      console.log(idList);
+      let formatData = idList.map((e) => {
+        return e.employee_id;
+      });
+      if (idList == [] || idList == null || idList == undefined) {
+        res
+          .status(404)
+          .json({ status: false, message: "no healthy Replacement found" });
+      } else {
+        EmployeesLogin.findOne(
+          { _id: { $in: formatData }, workstatus: true },
+          (err, employee) => {
+            if (!err) {
+              if (!employee)
+                return res
+                  .status(404)
+                  .json({
+                    status: false,
+                    message: "no working healthy Replacement found",
+                  });
+              else
+                return res.status(200).json({
+                  status: true,
+                  replacement: _.pick(employee, [
+                    "fullName",
+                    "email",
+                    "workstatus",
+                  ]),
+                });
+            } else next(err);
+          }
+        );
+      }
+    } else next(err);
   });
 };

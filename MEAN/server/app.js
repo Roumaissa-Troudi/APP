@@ -16,5 +16,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api', rtsIndex);
 app.use(passport.initialize());
+app.use(passport.session());
 
 app.listen(process.env.PORT, () => console.log(`Server started at port: ${process.env.PORT}`));

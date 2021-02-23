@@ -11,4 +11,5 @@ var healthSchema = new mongoose.Schema({
         type: Date
     }
 })
+
 mongoose.model('healthstatus', healthSchema);

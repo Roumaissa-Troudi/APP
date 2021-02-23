@@ -14,6 +14,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { SearchReplacementComponent } from '../modules/search-replacement/search-replacement.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,SearchReplacementComponent],
@@ -25,7 +26,7 @@ import { MatCardModule } from '@angular/material/card';
     FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,MatTabsModule,
-    MatDividerModule,MatCardModule
+    MatDividerModule,MatCardModule,MatInputModule
 
   ],
   exports: [],

@@ -21,15 +21,15 @@ export class SliderComponent implements OnInit {
     showTicks: true,
     getTickColor: (value: number): string => {
       if (value < 3) {
-        return 'red';
+        return '#2AE02A';
       }
       if (value < 5) {
-        return 'orange';
-      }
-      if (value < 7) {
         return 'yellow';
       }
-      return '#2AE02A';
+      if (value < 7) {
+        return 'orange';
+      }
+      return 'red';
     }
   };
   @Output() healthvalue= new EventEmitter<number>() ;

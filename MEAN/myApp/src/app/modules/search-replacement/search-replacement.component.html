@@ -4,8 +4,26 @@
 
 
 <mat-tab-group class="chart">
-  <mat-tab label="Search Automatically">  </mat-tab>
-  <mat-tab label="Search Manually">  </mat-tab>
+
+  <mat-tab label="Search Automatically">
+    <div class="chart__content"><br />
+    <div>
+      <div class="message"> Can't work anymore</div>
+      <button mat-raised-button color="primary" (click)="onSubmit()"> Search </button>
+      <div class="message" *ngIf="test">Your Replacement is <span>{{replacementDetails.fullName}}</span></div>
+
+    </div></div>
+     </mat-tab>
+
+  <mat-tab label="Search Manually">
+    <div class="chart__content">
+    <div class="chart__title"><form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Insert Replacement Name .. </mat-label>
+        <input matInput placeholder="Ex. John" value="">
+      </mat-form-field>
+    </form></div></div>
+       </mat-tab>
 
 </mat-tab-group>
 
