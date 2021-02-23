@@ -15,9 +15,12 @@ import { SearchReplacementComponent } from '../modules/search-replacement/search
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import { UserprofileComponent } from '../modules/userprofile/userprofile.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
-  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,SearchReplacementComponent],
+  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,UserprofileComponent,SearchReplacementComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -26,7 +29,8 @@ import {MatInputModule} from '@angular/material/input';
     FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,MatTabsModule,
-    MatDividerModule,MatCardModule,MatInputModule
+    MatDividerModule,MatCardModule,MatInputModule,
+    MatFormFieldModule
 
   ],
   exports: [],
