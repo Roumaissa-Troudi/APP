@@ -6,8 +6,11 @@
     <p class="chart__title">Are you available ?</p>
   </div>
   <div class="chart__content">
-    <div class="slider">
-      <app-button-slide (healthvalue)="SetworkValue($event)"></app-button-slide>
+    <div >
+      <app-button-slide class="slider" (workvalue)="SetworkValue($event)"></app-button-slide>
+      <br />
+      <br />
+      <div class="message">{{showMessage}}</div>
     </div>
   </div>
 </div>

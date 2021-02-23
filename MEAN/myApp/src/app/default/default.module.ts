@@ -10,9 +10,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HealthStatusComponent } from '../modules/health-status/health-status.component';
 import { MatButtonModule } from '@angular/material/button';
 import { WorkstatusComponent } from '../modules/workstatus/workstatus.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { SearchReplacementComponent } from '../modules/search-replacement/search-replacement.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent],
+  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,SearchReplacementComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -20,7 +24,9 @@ import { WorkstatusComponent } from '../modules/workstatus/workstatus.component'
     RouterModule,
     FlexLayoutModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,MatTabsModule,
+    MatDividerModule,MatCardModule
+
   ],
   exports: [],
 })

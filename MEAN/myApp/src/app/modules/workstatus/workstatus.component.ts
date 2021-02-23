@@ -5,28 +5,31 @@ import { EmployeeService } from 'src/app/shared/employee.service';
 @Component({
   selector: 'app-workstatus',
   templateUrl: './workstatus.component.html',
-  styleUrls: ['./workstatus.component.css']
+  styleUrls: ['./workstatus.component.scss'],
 })
 export class WorkstatusComponent implements OnInit {
+  workvalue = false;
+  showMessage: string ='At Work ?';
 
-  constructor(public employeeService: EmployeeService,  private route: Router) { }
+  constructor(public employeeService: EmployeeService, private route: Router) {}
 
   ngOnInit(): void {
+
   }
-   workvalue: boolean = this.employeeService.getEmployeeInfo().workStatus;
 
   SetworkValue(event) {
-
-    this.workvalue = !this.workvalue;
-console.log(this.workvalue);
+    this.workvalue = event;
+    console.log(this.workvalue);
     this.employeeService.postWork(this.workvalue).subscribe(
-      res => {
-        console.log(res)
+      (res) => {
+        console.log(res);
+        if (this.workvalue == true) {
+          this.showMessage = 'Welcome Home';
+        } else {
+          this.showMessage = 'See You Soon';
+        }
       },
-      err => {
-      }
+      (err) => {}
     );
-
   }
-
 }

@@ -24,7 +24,7 @@ var employeeSchema= new mongoose.Schema({
         type: String
     },
     workstatus: {
-        type: Boolean
+        type:Boolean, default: false 
     },
     phoneNumber: {
         type: Number

@@ -12,8 +12,13 @@ export class ButtonSlideComponent implements OnInit {
   ngOnInit(): void {
   }
   @Output() workvalue= new EventEmitter<any>() ;
-  workValueEmit() {
-    this.workvalue.emit();
+
+  checked = false;
+
+  changed(){
+    console.log(this.checked);
+    this.workvalue.emit(this.checked);
   }
+
 
 }

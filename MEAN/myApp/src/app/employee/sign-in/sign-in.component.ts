@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
   userDetails;
+  check;
   constructor(
     public employeeService: EmployeeService,
     private router: Router
@@ -33,7 +34,8 @@ export class SignInComponent implements OnInit {
           (res) => {
             this.userDetails = res['user'];
             this.employeeService.setEmployeeInfo(this.userDetails);
-            console.log(this.userDetails);
+            this.check=this.employeeService.getEmployeeInfo();
+            console.log(this.check);
           },
           (err) => {}
         );

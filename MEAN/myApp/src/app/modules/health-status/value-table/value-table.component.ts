@@ -10,7 +10,7 @@ export interface PeriodicElement {
 @Component({
   selector: 'app-value-table',
   templateUrl: './value-table.component.html',
-  styleUrls: ['./value-table.component.css']
+  styleUrls: ['./value-table.component.scss']
 })
 export class ValueTableComponent implements OnChanges {
   @Input() reload: boolean;

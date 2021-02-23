@@ -1,34 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Employee} from './employee.model';
+import { Employee } from './employee.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
   selectedEmployee: Employee = {
-    fullName:'',
-    email:'',
-    password:'',
-    workStatus: true
+    fullName: '',
+    email: '',
+    password: '',
+    workStatus: false,
   };
 
-  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True'})
+  noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
 
-  };
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  postEmployee (employee: Employee) {
-   return (this.http.post(environment.apiBaseUrl+'/register' , employee, this.noAuthHeader))
+  postEmployee(employee: Employee) {
+    return this.http.post(
+      environment.apiBaseUrl + '/register',
+      employee,
+      this.noAuthHeader
+    );
   }
-  login (authCredentials) {
-    return this.http.post(environment.apiBaseUrl+'/authenticate',authCredentials,  this.noAuthHeader);
+  login(authCredentials) {
+    return this.http.post(
+      environment.apiBaseUrl + '/authenticate',
+      authCredentials,
+      this.noAuthHeader
+    );
   }
 
-  getEmployeeProfile(){
+  getEmployeeProfile() {
     return this.http.get(environment.apiBaseUrl + '/dashboard');
   }
 
@@ -49,30 +55,25 @@ export class EmployeeService {
     if (token) {
       var userPayload = atob(token.split('.')[1]);
       return JSON.parse(userPayload);
-    }
-    else
-      return null;
+    } else return null;
   }
   isLoggedIn() {
     var userPayload = this.getUserPayload();
-    if (userPayload)
-      return userPayload.exp > Date.now() / 1000;
-    else
-     return false;
+    if (userPayload) return userPayload.exp > Date.now() / 1000;
+    else return false;
   }
 
-   signOut(): void {
-    localStorage.removeItem('token');
+  signOut(): void {
+    localStorage.clear();
+  }
+  postWork(value: boolean) {
+    return this.http.post(environment.apiBaseUrl + '/work', value);
+  }
+  setEmployeeInfo(employee: Employee) {
+    localStorage.setItem('employee', JSON.stringify(employee));
   }
 
- setEmployeeInfo(employee: Employee) {
-   localStorage.setItem('employee',JSON.stringify(employee))
- }
-
- getEmployeeInfo(){
-   return JSON.parse(localStorage.getItem('employee'))
- }
- postWork( value:boolean ) {
-  return this.http.post(environment.apiBaseUrl + '/work', value);
-}
+  getEmployeeInfo() {
+    return JSON.parse(localStorage.getItem('employee'));
+  }
 }

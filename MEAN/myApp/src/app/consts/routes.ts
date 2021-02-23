@@ -4,6 +4,7 @@ export enum routes {
   TABLES = 'tables',
   NOTIFICATION = 'notification',
   WORKSTATUS = 'workstatus',
-  PROFILE='userprofile'
+  PROFILE='userprofile',
+  SEARCH='searchReplacement'
 
 }

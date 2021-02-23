@@ -21,6 +21,8 @@ import { ValueTableComponent } from '../modules/health-status/value-table/value-
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ButtonSlideComponent } from './widgets/button-slide/button-slide.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { ButtonSlideComponent } from './widgets/button-slide/button-slide.compon
     SliderComponent,
     ValueTableComponent,
     ButtonSlideComponent,
-  ],
+    ],
   imports: [
     FlexLayoutModule,
     MatToolbarModule,
@@ -48,6 +50,7 @@ import { ButtonSlideComponent } from './widgets/button-slide/button-slide.compon
     NgxSliderModule,
     MatTableModule,
     MatSlideToggleModule,
+    MatTabsModule
   ],
   exports: [
     FooterComponent,
@@ -56,6 +59,7 @@ import { ButtonSlideComponent } from './widgets/button-slide/button-slide.compon
     SliderComponent,
     ValueTableComponent,
     ButtonSlideComponent,
+
   ],
 })
 export class SharedModule {}

@@ -23,7 +23,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { DefaultModule } from './default/default.module';
 import { HealthStatus } from './shared/healthstatus.service';
-import { VariablesGlobalesComponent } from './variables-globales/variables-globales.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,8 @@ import { VariablesGlobalesComponent } from './variables-globales/variables-globa
     SignUpComponent,
     EmployeeProfileComponent,
     SignInComponent,
-    VariablesGlobalesComponent,
+
+
 
 
 

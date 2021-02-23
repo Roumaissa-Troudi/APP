@@ -1,0 +1,16 @@
+.slider {
+  margin: 10px;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+}
+.mat-slide-toggle-thumb {
+  height: 10px;
+  width: 10px;
+}
+.mat-slide-toggle-bar {
+  height: 7px;
+  width: 28px;
+}

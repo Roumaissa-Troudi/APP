@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VariablesGlobalesComponent } from './variables-globales.component';
+import { SearchReplacementComponent } from './search-replacement.component';
 
-describe('VariablesGlobalesComponent', () => {
-  let component: VariablesGlobalesComponent;
-  let fixture: ComponentFixture<VariablesGlobalesComponent>;
+describe('SearchReplacementComponent', () => {
+  let component: SearchReplacementComponent;
+  let fixture: ComponentFixture<SearchReplacementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VariablesGlobalesComponent ]
+      declarations: [ SearchReplacementComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VariablesGlobalesComponent);
+    fixture = TestBed.createComponent(SearchReplacementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

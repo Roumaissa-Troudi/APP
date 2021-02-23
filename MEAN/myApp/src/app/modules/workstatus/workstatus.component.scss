@@ -1,3 +1,4 @@
+
 @import "src/app/styles/colors";
 @import "src/app/styles/font";
 @import "src/app/styles/variables";
@@ -43,16 +44,7 @@
       width: 600px;
     }
   }
-  &__button {
-    margin: 20 px;
-    position: absolute;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-    width: 30%;
 
-
-  }
 }
 
 .yellow {
@@ -67,14 +59,20 @@
   background-color: $white-blue;
 }
 
-.slider {
-  width: 80%;
-}
+
 .value {
   font-weight: $fw-normal;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
-  margin-top: 40px;
 }
 
-
+.message{
+  margin-top: 50px;
+  text-align: center;
+  font-weight: $fw-normal;
+    font-size: $fs-regular;
+    color: $grey;
+}
+.slider {
+  width: 100%;
+}

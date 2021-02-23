@@ -41,7 +41,7 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
       fullName:'',
       email:'',
       password:'',
-      workStatus:true,
+      workStatus:false,
     };
     form.resetForm();
     this.serverErrorMessages = '';
