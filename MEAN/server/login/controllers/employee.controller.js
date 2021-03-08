@@ -109,7 +109,7 @@ module.exports.search = (req, res, next) => {
       employee_id: { $ne: req._id },
     },
     "employee_id"
-  ).sort({ healthvalue:-1 }).exec((err, idList) => {
+  ).sort({ healthvalue:1 }).exec((err, idList) => {
     if (!err) {
       console.log(idList);
       let formatData = idList.map((e) => {
@@ -147,3 +147,62 @@ module.exports.search = (req, res, next) => {
     } else next(err);
   });
 };
+
+module.exports.work = (req, res, next) => {
+  EmployeesLogin.findOne({ _id: req._id }, (err, employee) => {
+    employee.workstatus = !employee.workstatus;
+    employee.save((err, doc) => {
+      if (!err) {
+        res.send(doc);
+      } else return next(err);
+    });
+  });
+};
+
+module.exports.table = (req, res, next) => {
+  var startDate = new Date(new Date().setHours(00, 00, 00));
+  var endDate = new Date(new Date().setHours(23, 59, 59));
+  console.log(startDate);
+  console.log(endDate);
+  HealthStatus.find(
+    {
+      date: {
+        $gte: startDate,
+        $lt: endDate,
+      },
+      healthvalue: {
+        $gte: 0,
+        $lt: 5,
+      },
+      employee_id: { $ne: req._id },
+    },
+    "employee_id"
+  ).sort({ healthvalue:-1 }).exec((err, tableList) => {
+    if (!err) {
+      console.log(tableList);
+      let formatTable = tableList.map((e) => {
+        return e.employee_id;
+      });
+      console.log(formatTable);
+
+      if (tableList == [] || tableList == null || tableList == undefined) {
+        res
+          .status(404)
+          .json({ status: false, message: "no healthy Replacement found" });
+      } else {
+        EmployeesLogin.find(
+          { _id: { $in: formatTable }, workstatus: true })
+          .exec(function (err, Table) {
+            if (!err) {
+              let formatList= Table.map((e) => {
+                return{ fullName: e.fullName, mail: e.email, workstatus:e.workstatus};
+              }); 
+               
+              res.status(200).json({ status: true, replacementTable: formatList });
+              console.log(formatList);
+             } else return next(err);
+          });
+        };
+      } else return next(err);
+    });
+    };

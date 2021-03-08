@@ -54,7 +54,7 @@ employeeSchema.pre('save', function(next) {
 });
 
 employeeSchema.methods.verifyPassword = function (password) {
-     return bcrypt.compareSync(password, this.password);
+     return bcrypt.compare(password, this.password);
 }
 
 employeeSchema.methods.generateJwt = function () {

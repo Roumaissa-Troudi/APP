@@ -17,10 +17,12 @@ import { MatCardModule } from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { UserprofileComponent } from '../modules/userprofile/userprofile.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { TablesComponent } from '../modules/tables/tables.component';
 
 
 @NgModule({
-  declarations: [DefaultComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,UserprofileComponent,SearchReplacementComponent],
+  declarations: [DefaultComponent, TablesComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,UserprofileComponent,SearchReplacementComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -30,9 +32,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatToolbarModule,
     MatButtonModule,MatTabsModule,
     MatDividerModule,MatCardModule,MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,MatTableModule
 
   ],
-  exports: [],
+  exports: [MatFormFieldModule,
+    MatInputModule],
 })
 export class DefaultModule {}

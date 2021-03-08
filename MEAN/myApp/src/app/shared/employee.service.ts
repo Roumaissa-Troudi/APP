@@ -77,7 +77,11 @@ export class EmployeeService {
     return JSON.parse(localStorage.getItem('employee'));
   }
 
-  searchReplacement(){
+  searchReplacement() {
     return this.http.get(environment.apiBaseUrl + '/searchReplacement');
+  }
+
+  getEmployeeTable() {
+    return this.http.get(environment.apiBaseUrl + '/table');
   }
 }

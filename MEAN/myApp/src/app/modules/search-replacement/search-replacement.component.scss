@@ -57,13 +57,13 @@
 .example-form {
   min-width: 400px;
   max-width: 200px;
-  width: 100%;
+  width: 80%;
 }
 
 .example-full-width {
   width: 100%;
 }
-button {
+.btn {
   margin-top: 40px;
   margin-bottom: 40px;
   left: 50%;
@@ -82,4 +82,11 @@ button {
 span {
   font-style: italic;
   font-weight: bold;
+}
+table {
+  width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+
 }
