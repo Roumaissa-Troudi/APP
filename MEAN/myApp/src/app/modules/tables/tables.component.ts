@@ -16,9 +16,9 @@ export class TablesComponent implements OnInit {
   constructor(public employeeService: EmployeeService, private route: Router) {}
 
   ngOnInit(): void {
-    this.employeeService.getEmployeeTable().subscribe(
+    this.employeeService.gettableEmployee().subscribe(
       (res) => {
-        this.dataSource = res['replacementTable'];
+        this.dataSource = res['EmployeeTable'];
         console.log(this.dataSource);
       },
       (err) => {}

@@ -36,11 +36,12 @@ export class SignInComponent implements OnInit {
             this.employeeService.setEmployeeInfo(this.userDetails);
             this.check=this.employeeService.getEmployeeInfo();
             console.log(this.check);
+            this.router.navigateByUrl('/dashboard/dashboard');
           },
           (err) => {}
         );
 
-        this.router.navigateByUrl('/dashboard/dashboard');
+
       },
       (err) => {
         this.serverErrorMessages = err.error.message;

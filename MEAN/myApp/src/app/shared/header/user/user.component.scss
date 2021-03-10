@@ -3,7 +3,7 @@
 @import 'src/app/styles/variables';
 
 .user-button {
-  background-color: $blue;
+  background-color: #28365f;
   box-shadow: none;
   margin-left: 16px;
 
@@ -19,7 +19,13 @@
     margin-top: 0;
   }
 }
-
+.name {
+  font-size: .875rem;
+  font-weight: 400;
+  margin-left: 4px;
+  color: white;
+align-content: center;
+}
 .user-menu-title {
   padding: 8px 0 8px;
   margin-bottom: 4px;
@@ -72,4 +78,8 @@
       }
     }
   }
+}
+.users {
+  display: flex;
+  align-items: center;
 }

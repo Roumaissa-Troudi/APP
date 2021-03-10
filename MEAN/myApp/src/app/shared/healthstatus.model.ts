@@ -1,3 +1,5 @@
 export class healthstatus {
-  healthvalue:number;
+  healthvaluePhy:number;
+  healthvaluePsy:number;
+
 }

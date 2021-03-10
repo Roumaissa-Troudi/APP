@@ -4,7 +4,10 @@ var healthSchema = new mongoose.Schema({
     employee_id: {
         type:String
     },
-    healthvalue: {
+    healthvaluePhy: {
+        type: Number
+    },
+    healthvaluePsy: {
         type: Number
     },
     date:{

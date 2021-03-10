@@ -12,6 +12,8 @@ router.post('/health',jwtHelper.verifyJwtToken, ctrlemployee.health);
 router.get('/healtHistory',jwtHelper.verifyJwtToken, ctrlemployee.healthHistory);
 router.get('/searchReplacement',jwtHelper.verifyJwtToken, ctrlemployee.search);
 router.get('/table',jwtHelper.verifyJwtToken, ctrlemployee.table);
+router.get('/workstatus',jwtHelper.verifyJwtToken, ctrlemployee.workstatus);
+router.get('/employeetable',jwtHelper.verifyJwtToken, ctrlemployee.tableEmployee);
 
 router.post('/work',jwtHelper.verifyJwtToken, ctrlemployee.work);
 

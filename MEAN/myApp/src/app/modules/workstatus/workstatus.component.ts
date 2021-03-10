@@ -8,17 +8,26 @@ import { EmployeeService } from 'src/app/shared/employee.service';
   styleUrls: ['./workstatus.component.scss'],
 })
 export class WorkstatusComponent implements OnInit {
-  workvalue = false;
-  showMessage: string ='At Work ?';
+  workvalue;
+  showMessage: string ;
+  checked;
 
   constructor(public employeeService: EmployeeService, private route: Router) {}
 
   ngOnInit(): void {
 
+    this.employeeService.getworkvalue().subscribe(
+      (res) => {
+        this.checked = res['value'];
+        console.log(this.checked);
+      },
+      (err) => {}
+    );
   }
-
-  SetworkValue(event) {
-    this.workvalue = event;
+  changed() {
+    this.checked = !this.checked;
+    console.log(this.checked);
+    this.workvalue = this.checked;
     console.log(this.workvalue);
     this.employeeService.postWork(this.workvalue).subscribe(
       (res) => {

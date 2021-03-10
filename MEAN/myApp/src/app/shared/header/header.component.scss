@@ -3,10 +3,9 @@
 @import 'src/app/styles/variables';
 
 .header {
-  background-color: $header-background-color;
+  background-color: #28365f;
   display: flex;
   justify-content: space-between;
-  position: fixed;
   z-index: 2;
   height: $header-height;
 
@@ -16,7 +15,7 @@
   }
 
   &__title-button {
-    background-color: $header-button-background-color;
+    background-color: #28365f;
     box-shadow: none;
 
     &:hover {

@@ -4,6 +4,7 @@
 
 table {
   width: 100%;
+  margin-bottom: 20px;
 }
 .support-requests {
   margin: 0 24px;
@@ -26,7 +27,7 @@ table {
   }
 
   &__content {
-    height: 427px;
+
     overflow-y: hidden;
     overflow-x: scroll;
 

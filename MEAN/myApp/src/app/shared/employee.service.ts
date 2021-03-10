@@ -66,6 +66,9 @@ export class EmployeeService {
   signOut(): void {
     localStorage.clear();
   }
+  getworkvalue() {
+    return this.http.get(environment.apiBaseUrl + '/workstatus');
+  }
   postWork(value: boolean) {
     return this.http.post(environment.apiBaseUrl + '/work', value);
   }
@@ -84,4 +87,9 @@ export class EmployeeService {
   getEmployeeTable() {
     return this.http.get(environment.apiBaseUrl + '/table');
   }
+gettableEmployee() {
+  return this.http.get(environment.apiBaseUrl + '/employeetable');
+
+}
+
 }

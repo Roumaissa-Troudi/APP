@@ -4,32 +4,51 @@
 
 <div class="chart">
   <div class="chart__header">
-    <p class="chart__title">Are you overburdened ?</p>
+    <p class="chart__title">Are you physically overburdened ?</p>
   </div>
   <div class="chart__content">
     <div class="slider">
-      <app-slider (healthvalue)="SethealthValue($event)"></app-slider>
+      <app-slider (healthvalue)="SethealthValuePhy($event)"></app-slider>
     </div>
 
     <br />
     <br />
 
-    <div class="value">Daily Value: {{ healthvalue }}</div>
+    <div class="value">Daily Value: {{ healthvaluePhy }}</div>
     <br />
     <br />
-    <p>
-      <button
-        class="chart__button"
-        mat-raised-button
-        color="primary"
-        (click)="submit()"
-      >
-        submit
-      </button>
-    </p>
+  </div>
+  <div class="chart__header">
+    <p class="chart__title">Are you psychically overburdened ?</p>
+  </div>
+  <div class="chart__content">
+    <div class="slider">
+      <app-slider (healthvalue)="SethealthValuePsy($event)"></app-slider>
+    </div>
     <br />
     <br />
 
+    <div class="value">Daily Value: {{ healthvaluePsy }}</div>
+  </div>
+  <br />
+    <br />
+  <p>
+    <button
+      class="chart__button"
+      mat-raised-button
+      color="primary"
+      (click)="submit()"
+    >
+      submit
+    </button>
+  </p>
+  <br />
+  <br />
+
+  <br />
+  <br />
+
+  <div>
     <app-value-table [reload]="parentreload"></app-value-table>
   </div>
 </div>

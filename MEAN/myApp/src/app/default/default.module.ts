@@ -19,6 +19,7 @@ import { UserprofileComponent } from '../modules/userprofile/userprofile.compone
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { TablesComponent } from '../modules/tables/tables.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { TablesComponent } from '../modules/tables/tables.component';
     MatToolbarModule,
     MatButtonModule,MatTabsModule,
     MatDividerModule,MatCardModule,MatInputModule,
-    MatFormFieldModule,MatTableModule
+    MatFormFieldModule,MatTableModule,
+    MatSlideToggleModule
 
   ],
   exports: [MatFormFieldModule,

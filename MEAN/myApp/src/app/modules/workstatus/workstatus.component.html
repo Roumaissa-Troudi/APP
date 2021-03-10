@@ -6,11 +6,15 @@
     <p class="chart__title">Are you available ?</p>
   </div>
   <div class="chart__content">
-    <div >
-      <app-button-slide class="slider" (workvalue)="SetworkValue($event)"></app-button-slide>
+    <div>
+      <mat-slide-toggle
+        [checked]="checked"
+        (change)="changed()"
+        class="slider"
+      ></mat-slide-toggle>
       <br />
       <br />
-      <div class="message">{{showMessage}}</div>
+      <div class="message">{{ showMessage }}</div>
     </div>
   </div>
 </div>

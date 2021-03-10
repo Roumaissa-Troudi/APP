@@ -16,7 +16,7 @@ export interface PeriodicElement {
 export class SearchReplacementComponent implements OnInit {
   replacementDetails;
   test;
-  public dataSource = new MatTableDataSource([]);
+   dataSource : MatTableDataSource<PeriodicElement>;
 
   displayedColumns: string[] = [
     'fullName',
@@ -30,16 +30,18 @@ export class SearchReplacementComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getEmployeeTable().subscribe(
       (res) => {
-        this.dataSource = res['replacementTable'];
+        this.dataSource = new MatTableDataSource(res['replacementTable']);
         console.log(this.dataSource);
       },
       (err) => {}
     );
+
   }
 
-  doFilter(filterValue='') {
-        this.dataSource.filter = filterValue.toLowerCase().trim();
-    console.log(this.dataSource);
+  doFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
   onSubmit() {

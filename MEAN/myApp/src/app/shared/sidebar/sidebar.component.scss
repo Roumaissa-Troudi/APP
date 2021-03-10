@@ -3,24 +3,26 @@
 @import "src/app/styles/variables";
 
 .mat-list-base {
+
   border-bottom: 1px solid $gray-80;
-  width: $sidebar-width;
-  padding-bottom: 16px;
+
 
   & .mat-list-item {
+    margin: 10px 15px 0;
     display: flex;
     cursor: pointer;
     color: $sidebar-font-color;
     width: auto;
     padding-left: 4px;
-
+    border-radius: 3px;
     &.active {
-      color: $sidebar-font-color-active;
-      background-color: $sidebar-background-color-active;
+      color: white;
+      background-color:#28365f;
       outline: none;
+      box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px  RGB(41,44,95 / 40%);
 
       & .mat-icon {
-        color: $sidebar-icon-color-active;
+        color:white;
       }
 
       & .circle {
@@ -43,7 +45,15 @@
   color: $sidebar-icon-color;
 }
 
-
+.title {
+padding: 20px 0;
+  color: $sidebar-title-color;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin:0px;
+  text-align: center;
+  color: #28365f;
+}
 .sidebar-title {
   color: $sidebar-title-color;
   font-size: $fs-normal;

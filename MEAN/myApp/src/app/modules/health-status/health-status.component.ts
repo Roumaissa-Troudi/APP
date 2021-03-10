@@ -11,14 +11,19 @@ export class HealthStatusComponent implements OnInit {
   constructor(public healthService: HealthStatus, private route: Router) {}
 
   ngOnInit() {}
-  healthvalue: number = 0;
+  healthvaluePhy: number = 0;
+  healthvaluePsy: number = 0;
   parentreload: boolean= false;
-  SethealthValue(event) {
-    this.healthvalue = event;
+  SethealthValuePhy(event) {
+    console.log(event);
+    this.healthvaluePhy = event;
+
+  }
+  SethealthValuePsy(event) {
+    this.healthvaluePsy = event;
   }
   submit() {
-  let value=this.healthvalue;
-  this.healthService.postHealth({healthvalue: value}).subscribe(
+  this.healthService.postHealth(this.healthvaluePhy,this.healthvaluePsy).subscribe(
     res => {
       console.log(res)
       this.parentreload=!this.parentreload;
@@ -26,9 +31,10 @@ export class HealthStatusComponent implements OnInit {
     err => {
     }
   );
+  }
 
 
 
-}
+
 
 }

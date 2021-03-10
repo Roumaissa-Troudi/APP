@@ -9,12 +9,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HealthStatus {
   health_status: healthstatus = {
-    healthvalue:0,
+    healthvaluePhy: 0,
+    healthvaluePsy: 0,
   };
   constructor(private http: HttpClient) {}
 
-  postHealth(health_status: healthstatus) {
-    return this.http.post(environment.apiBaseUrl + '/health', health_status);
+  postHealth(healthvaluePhy: number,healthvaluePsy: number ) {
+    return this.http.post(environment.apiBaseUrl + '/health', {healthvaluePhy,healthvaluePsy});
 
   }
 

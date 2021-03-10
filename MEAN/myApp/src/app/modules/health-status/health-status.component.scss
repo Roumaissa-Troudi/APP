@@ -31,7 +31,6 @@
   }
 
   &__content {
-    height: 380px;
     width: 100%;
     @media (max-width: $small) {
       overflow-x: scroll;
@@ -76,5 +75,7 @@
   text-align: center;
   margin-top: 40px;
 }
-
+.box{
+height: max-content;
+}
 

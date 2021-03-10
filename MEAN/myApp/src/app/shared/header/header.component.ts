@@ -13,9 +13,11 @@ export class HeaderComponent implements OnInit {
 
 
   constructor( private route: Router, public employeeService: EmployeeService) {}
+  check;
 
   ngOnInit(): void {}
   public openMenu(): void {
+
     this.isMenuOpened = !this.isMenuOpened;
   }
 

@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { HealthStatus } from 'src/app/shared/healthstatus.service';
 
 export interface PeriodicElement {
-  healthValue: number,
+  healthValuePhy: number,
+  healthValuePsy: number,
   date: Date
 }
 
@@ -27,7 +28,7 @@ export class ValueTableComponent implements OnChanges {
     (err) => {})  ;
 
   }
-  displayedColumns: string[] = [ 'Health Value', 'Date'];
+  displayedColumns: string[] = [ 'Health Value Phy',  'Health Value Psy', 'Date'];
 
 
 
