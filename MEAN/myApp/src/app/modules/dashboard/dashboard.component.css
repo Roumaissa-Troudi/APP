@@ -401,6 +401,7 @@ a>code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+  padding-top: 30px;
 }
 
 .col {
@@ -698,8 +699,8 @@ textarea.form-control {
 
 .btn-default {
   color: #fff;
-  border-color: #172b4d;
-  background-color: #172b4d;
+  border-color: #edc7b7;
+  background-color: #edc7b7;
   box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
@@ -1009,7 +1010,11 @@ textarea.form-control {
 .navbar-dark .navbar-nav .nav-link:focus {
   color: rgba(255, 255, 255, .65);
 }
-
+.mat-elevation-z8{
+  align-self: center;
+  margin-top: 30px;
+  width: 100%;
+}
 .card {
   position: relative;
   display: flex;
@@ -1051,6 +1056,19 @@ textarea.form-control {
   to {
     background-position: 0 0;
   }
+}
+.replacement {
+border-radius: 3px;
+margin-top: -20px;
+padding: 15px;
+box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(156 39 176 / 40%);
+background: linear-gradient(
+60deg
+,#b3476b,#ad2250);
+margin: 0 15px;
+margin-top: -20px;
+position: relative;
+color: white;
 }
 
 .progress {

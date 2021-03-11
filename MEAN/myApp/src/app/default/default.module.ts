@@ -20,6 +20,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { TablesComponent } from '../modules/tables/tables.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -34,7 +37,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonModule,MatTabsModule,
     MatDividerModule,MatCardModule,MatInputModule,
     MatFormFieldModule,MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,MatPaginatorModule,MatSortModule,ChartsModule
 
   ],
   exports: [MatFormFieldModule,

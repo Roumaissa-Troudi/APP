@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges  } from '@angular/core';
 import { Router } from '@angular/router';
 import { HealthStatus } from 'src/app/shared/healthstatus.service';
+import { DatePipe  } from '@angular/common'
 
 export interface PeriodicElement {
   healthValuePhy: number,
@@ -14,6 +15,8 @@ export interface PeriodicElement {
   styleUrls: ['./value-table.component.scss']
 })
 export class ValueTableComponent implements OnChanges {
+  pipe = new DatePipe('en-US');
+
   @Input() reload: boolean;
   dataSource: PeriodicElement[] ;
   constructor(public healthService: HealthStatus, private route: Router) { }
@@ -23,7 +26,13 @@ export class ValueTableComponent implements OnChanges {
 
       this.dataSource = res['healthHistory'];
       console.log(this.dataSource);
+      let date= res['healthHistory'].map (res => res.date);
+      let dates=[]
 
+      date.forEach((res)=> {
+        dates.push(this.pipe.transform(res,'shortDate'))
+      });
+      console.log(dates);
     },
     (err) => {})  ;
 

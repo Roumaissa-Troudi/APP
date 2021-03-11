@@ -21,21 +21,21 @@ export class EmployeeService {
 
   postEmployee(employee: Employee) {
     return this.http.post(
-      environment.apiBaseUrl + '/register',
+       '/register',
       employee,
       this.noAuthHeader
     );
   }
   login(authCredentials) {
     return this.http.post(
-      environment.apiBaseUrl + '/authenticate',
+      '/authenticate',
       authCredentials,
       this.noAuthHeader
     );
   }
 
   getEmployeeProfile() {
-    return this.http.get(environment.apiBaseUrl + '/dashboard');
+    return this.http.get( '/dashboard');
   }
 
   setToken(token: string) {
@@ -67,10 +67,10 @@ export class EmployeeService {
     localStorage.clear();
   }
   getworkvalue() {
-    return this.http.get(environment.apiBaseUrl + '/workstatus');
+    return this.http.get('/workstatus');
   }
   postWork(value: boolean) {
-    return this.http.post(environment.apiBaseUrl + '/work', value);
+    return this.http.post('/work', value);
   }
   setEmployeeInfo(employee: Employee) {
     localStorage.setItem('employee', JSON.stringify(employee));
@@ -81,14 +81,14 @@ export class EmployeeService {
   }
 
   searchReplacement() {
-    return this.http.get(environment.apiBaseUrl + '/searchReplacement');
+    return this.http.get('/searchReplacement');
   }
 
   getEmployeeTable() {
-    return this.http.get(environment.apiBaseUrl + '/table');
+    return this.http.get('/table');
   }
 gettableEmployee() {
-  return this.http.get(environment.apiBaseUrl + '/employeetable');
+  return this.http.get( '/employeetable');
 
 }
 

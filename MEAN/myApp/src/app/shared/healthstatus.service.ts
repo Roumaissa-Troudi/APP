@@ -15,12 +15,12 @@ export class HealthStatus {
   constructor(private http: HttpClient) {}
 
   postHealth(healthvaluePhy: number,healthvaluePsy: number ) {
-    return this.http.post(environment.apiBaseUrl + '/health', {healthvaluePhy,healthvaluePsy});
+    return this.http.post('/health', {healthvaluePhy,healthvaluePsy});
 
   }
 
   getHealthHistory() {
-    return this.http.get(environment.apiBaseUrl + '/healtHistory');
+    return this.http.get( '/healtHistory');
   }
 
 
