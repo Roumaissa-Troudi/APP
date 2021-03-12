@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  process.env.MONDODB_URI,
+  "mongodb+srv://Barabara:barbara@cluster0.8sdsu.mongodb.net/test?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -12,6 +12,7 @@ mongoose.connect(
     if (!err) {
       console.log("MongoDB connection succeeded");
     } else {
+      console.log(err)
       console.log("Error in MongoDB connection");
     }
   }

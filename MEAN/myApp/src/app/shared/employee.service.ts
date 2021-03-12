@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as io from 'socket.io-client';
 
 import { Employee } from './employee.model';
 import { environment } from '../../environments/environment';
@@ -8,6 +9,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class EmployeeService {
+
   selectedEmployee: Employee = {
     fullName: '',
     email: '',
@@ -15,27 +17,30 @@ export class EmployeeService {
     workStatus: false,
   };
 
+
+
   noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   postEmployee(employee: Employee) {
     return this.http.post(
-       '/register',
+      environment.apiBaseUrl + '/register',
       employee,
       this.noAuthHeader
     );
   }
   login(authCredentials) {
     return this.http.post(
-      '/authenticate',
+      environment.apiBaseUrl + '/authenticate',
       authCredentials,
       this.noAuthHeader
     );
   }
 
   getEmployeeProfile() {
-    return this.http.get( '/dashboard');
+    return this.http.get(environment.apiBaseUrl + '/dashboard');
   }
 
   setToken(token: string) {
@@ -67,10 +72,10 @@ export class EmployeeService {
     localStorage.clear();
   }
   getworkvalue() {
-    return this.http.get('/workstatus');
+    return this.http.get(environment.apiBaseUrl + '/workstatus');
   }
   postWork(value: boolean) {
-    return this.http.post('/work', value);
+    return this.http.post(environment.apiBaseUrl + '/work', value);
   }
   setEmployeeInfo(employee: Employee) {
     localStorage.setItem('employee', JSON.stringify(employee));
@@ -81,14 +86,14 @@ export class EmployeeService {
   }
 
   searchReplacement() {
-    return this.http.get('/searchReplacement');
+    return this.http.get(environment.apiBaseUrl + '/searchReplacement');
   }
 
   getEmployeeTable() {
-    return this.http.get('/table');
+    return this.http.get(environment.apiBaseUrl + '/table');
   }
 gettableEmployee() {
-  return this.http.get( '/employeetable');
+  return this.http.get(environment.apiBaseUrl + '/employeetable');
 
 }
 
