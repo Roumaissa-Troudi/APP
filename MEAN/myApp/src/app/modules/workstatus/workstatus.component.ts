@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/shared/employee.service';
 import {FormControl, Validators} from '@angular/forms';
+import { AlertService } from '../alert/alert.service';
 
 interface Worstation {
   value: number;
@@ -14,15 +15,19 @@ interface Worstation {
   styleUrls: ['./workstatus.component.scss'],
 })
 export class WorkstatusComponent implements OnInit {
+  options = {
+    autoClose: false,
+    keepAfterRouteChange: false
+};
   workstationControl = new FormControl('', Validators.required);
   workvalue;
   checked;
 check;
 firstvalue;
 clicked= false;
-selected
-  constructor(public employeeService: EmployeeService, private route: Router) {}
-  Worstations: Worstation[] = [
+selected:number;
+  constructor(public employeeService: EmployeeService, private route: Router,protected alertService: AlertService) {}
+  worstations: Worstation[] = [
     {value:1, viewValue: 1},
     {value:1,viewValue: 2},
     {value:1,viewValue: 3},
@@ -75,6 +80,8 @@ selected
     this.employeeService.postWorkstation(this.selected).subscribe(
       (res) => {
         console.log(res);
+        this.alertService.success('Work status updated', this.options);
+        setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
       },
       (err) => {}
     );
@@ -83,9 +90,26 @@ selected
       this.employeeService.postWork(this.workvalue).subscribe(
         (res) => {
           console.log(res);
+          this.alertService.success('You are at home!', this.options);
+        setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
         },
         (err) => {}
       );
+    }
+    else if ( this.firstvalue == this.workvalue && this.workvalue ==true )
+    {
+      this.employeeService.postWorkstation(this.selected).subscribe(
+        (res) => {
+          console.log(res);
+          this.alertService.success('Workstation updated', this.options);
+          setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
+        },
+        (err) => {}
+      );
+    } else if ( this.firstvalue == this.workvalue && this.workvalue ==false) {
+      this.alertService.success('Still at home!', this.options);
+      setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
+
     }
   }
 }

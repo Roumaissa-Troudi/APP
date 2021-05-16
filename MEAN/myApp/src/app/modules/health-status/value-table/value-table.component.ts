@@ -6,7 +6,7 @@ import { DatePipe  } from '@angular/common'
 export interface PeriodicElement {
   healthValuePhy: number,
   healthValuePsy: number,
-  dates: string
+  date: string
 }
 
 @Component({
@@ -26,13 +26,13 @@ export class ValueTableComponent implements OnChanges {
 
       this.dataSource = res['healthHistory'];
       console.log(this.dataSource);
-      let date= res['healthHistory'].map (res => res.date);
-      let dates=[]
 
-      date.forEach((res)=> {
-        dates.push(this.pipe.transform(res,'shortDate'))
+      this.dataSource.forEach((element)=> {
+        element.date=this.pipe.transform(element.date,'shortDate');
+
+
       });
-      console.log(dates);
+      console.log(this.dataSource);
 
     },
     (err) => {})  ;

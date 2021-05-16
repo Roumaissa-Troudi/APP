@@ -15,7 +15,8 @@ export interface PeriodicElement {
 })
 export class SearchReplacementComponent implements OnInit {
   replacementDetails;
-  test;
+  test;clicked= false;
+
    dataSource : MatTableDataSource<PeriodicElement>;
    serverErrorMessages;
   displayedColumns: string[] = [

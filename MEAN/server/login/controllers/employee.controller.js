@@ -59,7 +59,7 @@ module.exports.home = (req, res, next) => {
         "supervisor",
         "city",
        "department",
-        "role"]),
+        "role","workstation"]),
       });
   });
 };
@@ -150,15 +150,15 @@ module.exports.search = (req, res, next) => {
   console.log(startDate);
   console.log(endDate);
 
-  EmployeesLogin.find({ _id: { $ne: req._id }, workstatus: true}, "_id").exec(
+  EmployeesLogin.find({ _id: { $ne: req._id }, workstatus: true,replacement:false}, "_id").exec(
     (err, employeeOk) => {
       if (!err) {
         console.log(employeeOk);
         let formatData1 = employeeOk.map((e) => {
           return e._id;
         });
-        console.log(formatData1);
-        if (employeeOk == [] || employeeOk == null || employeeOk == undefined) {
+        console.log(formatData1.length == 0);
+        if (formatData1.length == 0 || formatData1 == null || formatData1 == undefined) {
           res
             .status(404)
             .json({ status: false, message: "no working Replacement found" });
@@ -189,7 +189,7 @@ module.exports.search = (req, res, next) => {
                   return e.employee_id;
                 });
                 console.log(formatData);
-                if (idList == [] || idList == null || idList == undefined) {
+                if (formatData1.length == 0 || formatData == null || formatData == undefined) {
                   res
                     .status(404)
                     .json({
@@ -197,14 +197,11 @@ module.exports.search = (req, res, next) => {
                       message: "no healthy Replacement found",
                     });
                 } else {
-                  EmployeesLogin.findOneAndUpdate({ _id: formatData[0] }, { notification: " You have be chosen to replace ",replacement:true},{new: true},
-                  (err,doc,next)=> {
-                  if (!err) {
-                      res.send(doc);
-                    } else return next(err);
-                   }).exec(
+                  EmployeesLogin.findOneAndUpdate({ _id: formatData[0] }, { notification: " You have be chosen to replace ",replacement:true},{new: true})
+                  .exec(
                     (err, employee) => {
-                                
+                                if (err) { return next(err)}
+                                else {
                       return res.status(200).json({
                         status: true,
                         replacement: _.pick(employee, [
@@ -213,7 +210,7 @@ module.exports.search = (req, res, next) => {
                           "workstatus",
                           "notification"
                         ]),
-                      });
+                      });}
                     }
                   );
                 }

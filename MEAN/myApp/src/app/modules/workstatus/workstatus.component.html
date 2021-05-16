@@ -1,3 +1,6 @@
+<div class="alert-section">
+  <alert></alert></div>
+
 <mat-toolbar class="page-header" role="heading">
   <h1>Work Status</h1>
 </mat-toolbar>
@@ -12,34 +15,21 @@
       <mat-button-toggle class="btn" mat-raised-button (click)="notworkeed()" value="false"><mat-icon class="icon">home</mat-icon></mat-button-toggle>
 
     </mat-button-toggle-group>
+  </div>
 
-
-
-
-
-    </div>
       <mat-divider></mat-divider>
-<div *ngIf="checked== true" class="choose">
-<!-- <mat-form-field appearance="fill" *ngIf="checked== true" class="choose">
-  <mat-label>Choose your workstation</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let Worstation of Worstations" [value]="Worstations.value">
-      {{Worstations.viewValue}}
-    </mat-option>
-  </mat-select>
-</mat-form-field> -->
-<mat-form-field appearance="fill" >
-  <mat-label>Choose your workstation</mat-label>
-  <mat-select [(value)]="selected" [formControl]="workstationControl" required >
-    <mat-option>--</mat-option>
-    <mat-option [value]="Worstation.viewValue" *ngFor="let Worstation of Worstations" >
-      {{Worstation.viewValue}}
-    </mat-option>
-  </mat-select>
-  <mat-error *ngIf="workstationControl.hasError('required')">Please choose a workstation</mat-error>
 
-</mat-form-field>
-<p>Your workstation: {{selected}}</p>
+<div *ngIf="checked== true" class="choose">
+  <mat-form-field appearance="fill">
+    <mat-label>Your worstation</mat-label>
+    <mat-select [(ngModel)]="selected" name="worstation" required>
+      <mat-option *ngFor="let worstation of worstations" [value]="worstation.viewValue">
+        {{worstation.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Selected worstation: {{selected}} </p>
+
 </div>
 <div>
     <button
