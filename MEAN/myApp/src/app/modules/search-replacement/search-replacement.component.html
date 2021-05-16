@@ -13,7 +13,8 @@
         </button>
         <div class="message" *ngIf="test">
           Your Replacement is <span>{{ replacementDetails.fullName }}</span>
-        </div>
+
+        </div><alert></alert>
       </div>
     </div>
   </mat-tab>
@@ -29,6 +30,7 @@
 </div>
 <mat-divider></mat-divider>
 <mat-card>
+  <alert></alert>
       <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8"  >
 
           <!--- Note that these columns can be defined in any order.
@@ -56,7 +58,10 @@
           <ng-container matColumnDef="replacement">
             <th mat-header-cell *matHeaderCellDef> Choose as Replacement </th>
             <td mat-cell *matCellDef="let element">
-              <button mat-raised-button color="primary" [disabled]="clicked" clicked = true;> Choose
+              <button mat-raised-button color="primary"
+              [disabled]="clicked"
+              (click)="submit(element);
+              clicked = true;"> Choose
               </button>
             </td>
           </ng-container>

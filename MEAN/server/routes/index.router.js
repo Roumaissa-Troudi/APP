@@ -17,6 +17,8 @@ router.get('/employeetable',jwtHelper.verifyJwtToken, ctrlemployee.tableEmployee
 router.post('/workstation',jwtHelper.verifyJwtToken,ctrlemployee.workstation);
 router.post('/work',jwtHelper.verifyJwtToken, ctrlemployee.work);
 router.post('/configprofile',jwtHelper.verifyJwtToken, ctrlemployee.configProfile);
+router.post('/postnotif',jwtHelper.verifyJwtToken, ctrlemployee.postnotification);
+router.get('/getnotif',jwtHelper.verifyJwtToken, ctrlemployee.getnotif);
 
 
 module.exports = router;

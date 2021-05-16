@@ -28,9 +28,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { AlertModule } from '../modules/alert/alert.module';
+import { NotificationComponent } from '../modules/notification/notification.component';
 
 @NgModule({
-  declarations: [DefaultComponent, TablesComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,UserprofileComponent,SearchReplacementComponent],
+  declarations: [DefaultComponent, TablesComponent,NotificationComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,UserprofileComponent,SearchReplacementComponent],
   imports: [
     CommonModule,
     SharedModule,

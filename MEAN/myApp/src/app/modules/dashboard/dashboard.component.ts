@@ -45,7 +45,7 @@ chart2;
     public healthService: HealthStatus
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {this.check=this.employeeservice.getEmployeeInfo();
     this.employeeservice.getEmployeeProfile().subscribe(
       (res) => {
         this.userDetails = res['user'];

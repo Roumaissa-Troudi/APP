@@ -23,7 +23,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { DefaultModule } from './default/default.module';
 import { HealthStatus } from './shared/healthstatus.service';
-import { NotificationComponent } from './modules/notification/notification.component';
 import { AlertModule } from './modules/alert/alert.module';
 
 @NgModule({
@@ -33,7 +32,7 @@ import { AlertModule } from './modules/alert/alert.module';
     SignUpComponent,
     EmployeeProfileComponent,
     SignInComponent,
-    NotificationComponent,
+
 
 
 

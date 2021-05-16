@@ -59,7 +59,7 @@ module.exports.home = (req, res, next) => {
         "supervisor",
         "city",
        "department",
-        "role","workstation"]),
+        "role","workstation","notification"]),
       });
   });
 };
@@ -147,9 +147,16 @@ module.exports.workstatus = (req, res, next) => {
 module.exports.search = (req, res, next) => {
   var startDate = new Date(new Date().setHours(00, 00, 00));
   var endDate = new Date(new Date().setHours(23, 59, 59));
+  var fullname=""
   console.log(startDate);
   console.log(endDate);
-
+  EmployeesLogin.findOne({ _id: req._id }, (err, employee) => {
+    if (!err) {
+      fullname = employee.fullName;
+    console.log(fullname);
+    return fullname;
+    } else return next(err);
+  });
   EmployeesLogin.find({ _id: { $ne: req._id }, workstatus: true,replacement:false}, "_id").exec(
     (err, employeeOk) => {
       if (!err) {
@@ -157,7 +164,7 @@ module.exports.search = (req, res, next) => {
         let formatData1 = employeeOk.map((e) => {
           return e._id;
         });
-        console.log(formatData1.length == 0);
+        console.log(formatData1);
         if (formatData1.length == 0 || formatData1 == null || formatData1 == undefined) {
           res
             .status(404)
@@ -189,7 +196,7 @@ module.exports.search = (req, res, next) => {
                   return e.employee_id;
                 });
                 console.log(formatData);
-                if (formatData1.length == 0 || formatData == null || formatData == undefined) {
+                if (formatData.length == 0 || formatData == null || formatData == undefined) {
                   res
                     .status(404)
                     .json({
@@ -197,7 +204,7 @@ module.exports.search = (req, res, next) => {
                       message: "no healthy Replacement found",
                     });
                 } else {
-                  EmployeesLogin.findOneAndUpdate({ _id: formatData[0] }, { notification: " You have be chosen to replace ",replacement:true},{new: true})
+                  EmployeesLogin.findOneAndUpdate({ _id: formatData[0] }, { notification: " You have be chosen to replace "+ fullname,replacement:true},{new: true})
                   .exec(
                     (err, employee) => {
                                 if (err) { return next(err)}
@@ -262,14 +269,14 @@ module.exports.table = (req, res, next) => {
           return e.employee_id;
         });
 
-        if (tableList == [] || tableList == null || tableList == undefined) {
+        if (tableList.length ==0|| tableList == null || tableList == undefined) {
           res
             .status(404)
             .json({ status: false, message: "no healthy Replacement found" });
         } else {
           EmployeesLogin.find({
             _id: { $in: formatTable },
-            workstatus: true,
+            workstatus: true, replacement:false
           }).exec(function (err, Table) {
             if (!err) {
               let formatList = Table.map((e) => {
@@ -318,3 +325,23 @@ module.exports.updateAllEmployees = () => {
     }
   });
 }
+
+module.exports.postnotification = (req, res, next) => {
+  console.log(req.body.mail)
+EmployeesLogin.findOneAndUpdate({email: req.body.mail},{notification:"You have be chosen to replace "+ req.body.fullName,replacement:true},{new: true},
+  (err,doc)=> {
+    if (!err) {
+      res.send(doc); 
+      console.log(doc);
+    } else return next(err);
+  });
+
+};
+
+module.exports.getnotif = (req, res, next) => {
+  EmployeesLogin.findOne({_id:req._id}).exec(function (err, employee) {
+    if (!err) {
+      return res.status(200).json({ status: true, notification:employee.notification });
+    } else return next(err);
+  });
+};

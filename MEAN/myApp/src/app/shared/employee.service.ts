@@ -115,4 +115,11 @@ gettableEmployee() {
 postWorkstation(value: number) {
   return this.http.post(environment.apiBaseUrl + '/workstation', {workstation :value});
 }
+
+postNotification(mail:string,fullName:string) {
+  return this.http.post(environment.apiBaseUrl + '/postnotif', {mail ,fullName});
+}
+getNotification() {
+  return this.http.get(environment.apiBaseUrl + '/getnotif',);
+}
 }
