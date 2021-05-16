@@ -6,7 +6,7 @@ import { DatePipe  } from '@angular/common'
 export interface PeriodicElement {
   healthValuePhy: number,
   healthValuePsy: number,
-  date: Date
+  dates: string
 }
 
 @Component({
@@ -33,6 +33,7 @@ export class ValueTableComponent implements OnChanges {
         dates.push(this.pipe.transform(res,'shortDate'))
       });
       console.log(dates);
+
     },
     (err) => {})  ;
 

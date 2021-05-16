@@ -4,6 +4,8 @@ import * as io from 'socket.io-client';
 
 import { Employee } from './employee.model';
 import { environment } from '../../environments/environment';
+import { Profile } from './profile.model';
+
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +19,15 @@ export class EmployeeService {
     workStatus: false,
   };
 
+  employeeProfile : Profile = {
+    address: '',
+    country: '',
+    postalcode: 0,
+    aboutme: '',
+    supervisor: '',
+    city: '',
+    department:'',
+    role:''};
 
 
   noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
@@ -77,10 +88,15 @@ export class EmployeeService {
   postWork(value: boolean) {
     return this.http.post(environment.apiBaseUrl + '/work', value);
   }
+
   setEmployeeInfo(employee: Employee) {
     localStorage.setItem('employee', JSON.stringify(employee));
   }
 
+  postprofileInfo(profile: Profile) {
+    return this.http.post(
+      environment.apiBaseUrl + '/configprofile',profile);
+  }
   getEmployeeInfo() {
     return JSON.parse(localStorage.getItem('employee'));
   }
@@ -96,5 +112,7 @@ gettableEmployee() {
   return this.http.get(environment.apiBaseUrl + '/employeetable');
 
 }
-
+postWorkstation(value: number) {
+  return this.http.post(environment.apiBaseUrl + '/workstation', {workstation :value});
+}
 }

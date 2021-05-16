@@ -50,7 +50,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     NgxSliderModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   exports: [
     FooterComponent,

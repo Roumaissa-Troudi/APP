@@ -7,12 +7,12 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import { AuthGuard } from './auth/auth.guard';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HealthStatusComponent } from './modules/health-status/health-status.component';
-import { NotificationModule } from './modules/notification/notification.module';
 import { DefaultComponent } from './default/default.component';
 import { TablesComponent } from './modules/tables/tables.component';
 import { UserprofileComponent } from './modules/userprofile/userprofile.component';
 import { WorkstatusComponent } from './modules/workstatus/workstatus.component';
 import { SearchReplacementComponent } from './modules/search-replacement/search-replacement.component';
+import { NotificationComponent } from './modules/notification/notification.component';
 export const appRoutes: Routes = [
   {
     path: 'signup',
@@ -33,7 +33,8 @@ export const appRoutes: Routes = [
       { path: 'tables', component: TablesComponent },
       { path: 'userprofile', component:UserprofileComponent},
       { path: 'workstatus', component:WorkstatusComponent},
-      { path: 'searchReplacement', component:SearchReplacementComponent}
+      { path: 'searchReplacement', component:SearchReplacementComponent},
+      { path: 'notification', component:NotificationComponent}
 
     ],
   },

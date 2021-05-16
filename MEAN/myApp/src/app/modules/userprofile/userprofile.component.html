@@ -1,15 +1,19 @@
+
+<div class="alert-section">
+  <alert></alert></div>
 <div class="col-xl-8 order-xl-1">
   <div class="card bg-secondary shadow">
     <div class="card-header bg-white border-0">
       <div class="row align-items-center">
         <div class="col-8">
           <h3 class="mb-0">My account</h3>
+
         </div>
 
       </div>
     </div>
     <div class="card-body">
-      <form>
+      <form #profileForm="ngForm" (ngSubmit)="ngSubmit(profileForm)">
         <h6 class="heading-small text-muted mb-4">User information</h6>
         <div class="pl-lg-4">
           <div class="row">
@@ -49,7 +53,8 @@
             <div class="col-md-12">
               <div class="form-group focused">
                 <label class="form-control-label" for="input-address">Address</label>
-                <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text">
+                <input id="input-address" class="form-control form-control-alternative" placeholder="{{check.address}}"  type="text" value="{{check.address}}"
+                #address="ngModel" [(ngModel)]="employeeservice.employeeProfile.address" name="address" >
               </div>
             </div>
           </div>
@@ -57,19 +62,22 @@
             <div class="col-lg-4">
               <div class="form-group focused">
                 <label class="form-control-label" for="input-city">City</label>
-                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="München Bayern">
+                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="{{check.city}}"
+                #city="ngModel" [(ngModel)]="employeeservice.employeeProfile.city"  name="city" >
               </div>
             </div>
             <div class="col-lg-4">
               <div class="form-group focused">
                 <label class="form-control-label" for="input-country">Country</label>
-                <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="Deutschland">
+                <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="{{check.country}}"
+                 #country="ngModel" [(ngModel)]="employeeservice.employeeProfile.country"  name="country">
               </div>
             </div>
             <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label" for="input-country">Postal code</label>
-                <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
+                <input  id="input-postal-code" class="form-control form-control-alternative" placeholder="{{check.postalcode}}" type="number"
+                #postalcode="ngModel" [(ngModel)]="employeeservice.employeeProfile.postalcode"  name="postalcode" >
               </div>
             </div>
           </div>
@@ -82,7 +90,8 @@
             <div class="col-md-12">
               <div class="form-group focused">
                 <label class="form-control-label" for="input-address">Department</label>
-                <input id="input-address" class="form-control form-control-alternative" placeholder="Department"  type="text">
+                <input id="input-address" class="form-control form-control-alternative" placeholder="{{check.department}}"  type="text"
+                #department="ngModel" [(ngModel)]="employeeservice.employeeProfile.department"  name="department"  >
               </div>
             </div>
           </div>
@@ -90,13 +99,15 @@
             <div class="col-lg-6">
               <div class="form-group focused">
                 <label class="form-control-label" for="input-Role">Role</label>
-                <input type="text" id="input-Role" class="form-control form-control-alternative" placeholder="Role" >
+                <input type="text" id="input-Role" class="form-control form-control-alternative" placeholder="{{check.role}}"
+                #role="ngModel" [(ngModel)]="employeeservice.employeeProfile.role"  name="role"  >
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group focused">
                 <label class="form-control-label" for="input-Supervisor">Supervisor</label>
-                <input type="text" id="input-Supervisor" class="form-control form-control-alternative" placeholder="Supervisor" >
+                <input type="text" id="input-Supervisor" class="form-control form-control-alternative" placeholder="{{check.supervisor}}"
+                #supervisor="ngModel" [(ngModel)]="employeeservice.employeeProfile.supervisor"  name="supervisor" >
               </div>
             </div>
           </div>
@@ -107,9 +118,14 @@
         <div class="pl-lg-4">
           <div class="form-group focused">
             <label>About Me</label>
-            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+            <textarea rows="4" class="form-control form-control-alternative" placeholder="{{check.aboutme}}"
+            #aboutme="ngModel" [(ngModel)]="employeeservice.employeeProfile.aboutme"  name="aboutme"> </textarea>
           </div>
         </div>
+        <button class="chartbutton"
+        mat-raised-button
+        color="primary" type="submit" >Upload</button>
       </form>
+
     </div>
   </div>

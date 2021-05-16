@@ -17,7 +17,7 @@ export class SearchReplacementComponent implements OnInit {
   replacementDetails;
   test;
    dataSource : MatTableDataSource<PeriodicElement>;
-
+   serverErrorMessages;
   displayedColumns: string[] = [
     'fullName',
     'mail',
@@ -51,7 +51,8 @@ export class SearchReplacementComponent implements OnInit {
         console.log(res);
         this.test = Object.keys(this.replacementDetails).includes('fullName');
       },
-      (err) => {}
+      (err) => {        this.serverErrorMessages = err.error.message;
+      }
     );
   }
 }

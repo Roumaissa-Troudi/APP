@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
 const _ = require("lodash");
-
+const schedule = require('node-schedule');
 const EmployeesLogin = mongoose.model("EmployeesLogin");
 const HealthStatus = mongoose.model("healthstatus");
+
+
+
 
 module.exports.register = (req, res, next) => {
   var employee = new EmployeesLogin();
@@ -11,6 +14,7 @@ module.exports.register = (req, res, next) => {
   employee.email = req.body.email;
   employee.password = req.body.password;
   employee.workstatus = false;
+  
   employee.save((err, doc) => {
     console.log(err);
     if (!err) {
@@ -48,10 +52,31 @@ module.exports.home = (req, res, next) => {
     else
       return res.status(200).json({
         status: true,
-        user: _.pick(employee, ["fullName", "email", "workstatus"]),
+        user: _.pick(employee, ["fullName", "email", "workstatus", "address",
+        "country",
+        "postalcode",
+        "aboutme",
+        "supervisor",
+        "city",
+       "department",
+        "role"]),
       });
   });
 };
+
+
+module.exports.configProfile = (req, res, next) => {
+ 
+  EmployeesLogin.findOneAndUpdate({ _id: req._id }, { address:req.body.address, city:req.body.city, 
+    country:req.body.country, postalcode :req.body.postalcode, supervisor :req.body.supervisor, aboutme:req.body.aboutme, role:req.body.role, department:req.body.department},
+    {new: true},
+    (err,doc)=> {
+      if (!err) {
+        res.send(doc);
+      } else return next(err);
+    });
+};
+
 
 module.exports.health = (req, res, next) => {
   console.log(req.body.healthvaluePhy);
@@ -99,10 +124,20 @@ module.exports.work = (req, res, next) => {
   });
 };
 
+module.exports.workstation = (req, res, next) => {
+  
+  EmployeesLogin.findOneAndUpdate({ _id: req._id }, { workstation :req.body.workstation},{new: true},
+    (err,doc)=> {
+      if (!err) {
+        res.send(doc);
+      } else return next(err);
+    });
+};
+
 module.exports.workstatus = (req, res, next) => {
   EmployeesLogin.findOne({ _id: req._id }, (err, employee) => {
     if (!err) {
-      console.log(employee.workstatus);
+      
       value = employee.workstatus;
       return res.status(200).json({ value });
     } else return next(err);
@@ -114,62 +149,80 @@ module.exports.search = (req, res, next) => {
   var endDate = new Date(new Date().setHours(23, 59, 59));
   console.log(startDate);
   console.log(endDate);
-  HealthStatus.find(
-    {
-      date: {
-        $gte: startDate,
-        $lt: endDate,
-      },
-      healthvaluePhy: {
-        $gte: 0,
-        $lt: 5,
-      },
-      healthvaluePsy: {
-        $gte: 0,
-        $lt: 5,
-      },
-      employee_id: { $ne: req._id },
-    },
-    "employee_id"
-  )
-    .sort({ healthvaluePhy: 1 })
-    .exec((err, idList) => {
+
+  EmployeesLogin.find({ _id: { $ne: req._id }, workstatus: true}, "_id").exec(
+    (err, employeeOk) => {
       if (!err) {
-        console.log(idList);
-        let formatData = idList.map((e) => {
-          return e.employee_id;
+        console.log(employeeOk);
+        let formatData1 = employeeOk.map((e) => {
+          return e._id;
         });
-        console.log(idList);
-        if (idList == [] || idList == null || idList == undefined) {
+        console.log(formatData1);
+        if (employeeOk == [] || employeeOk == null || employeeOk == undefined) {
           res
             .status(404)
-            .json({ status: false, message: "no healthy Replacement found" });
+            .json({ status: false, message: "no working Replacement found" });
         } else {
-          EmployeesLogin.findOne(
-            { _id: { $in: formatData }, workstatus: true })    
-
-            .exec((err, employee) => {
+          HealthStatus.find(
+            {
+              date: {
+                $gte: startDate,
+                $lt: endDate,
+              },
+              healthvaluePhy: {
+                $gte: 0,
+                $lt: 5,
+              },
+              healthvaluePsy: {
+                $gte: 0,
+                $lt: 5,
+              },
+              employee_id: { $in: formatData1 },
+            },
+            "employee_id"
+          )
+            .sort({ healthvaluePhy: 1, healthvaluePsy: 1 })
+            .exec((err, idList) => {
               if (!err) {
-                if (!employee)
-                  return res.status(404).json({
-                    status: false,
-                    message: "no working healthy Replacement found",
-                  });
-                else
-                  return res.status(200).json({
-                    status: true,
-                    replacement: _.pick(employee, [
-                      "fullName",
-                      "email",
-                      "workstatus",
-                    ]),
-                  });
+                console.log(idList);
+                let formatData = idList.map((e) => {
+                  return e.employee_id;
+                });
+                console.log(formatData);
+                if (idList == [] || idList == null || idList == undefined) {
+                  res
+                    .status(404)
+                    .json({
+                      status: false,
+                      message: "no healthy Replacement found",
+                    });
+                } else {
+                  EmployeesLogin.findOneAndUpdate({ _id: formatData[0] }, { notification: " You have be chosen to replace ",replacement:true},{new: true},
+                  (err,doc,next)=> {
+                  if (!err) {
+                      res.send(doc);
+                    } else return next(err);
+                   }).exec(
+                    (err, employee) => {
+                                
+                      return res.status(200).json({
+                        status: true,
+                        replacement: _.pick(employee, [
+                          "fullName",
+                          "email",
+                          "workstatus",
+                          "notification"
+                        ]),
+                      });
+                    }
+                  );
+                }
               } else next(err);
             });
-          
         }
       } else next(err);
-    });
+    }
+  );
 };
 
 module.exports.work = (req, res, next) => {
@@ -182,11 +235,11 @@ module.exports.work = (req, res, next) => {
     });
   });
 };
+
 module.exports.table = (req, res, next) => {
   var startDate = new Date(new Date().setHours(00, 00, 00));
   var endDate = new Date(new Date().setHours(23, 59, 59));
-  console.log(startDate);
-  console.log(endDate);
+
   HealthStatus.find(
     {
       date: {
@@ -208,11 +261,9 @@ module.exports.table = (req, res, next) => {
     .sort({ healthvaluePsy: -1 })
     .exec((err, tableList) => {
       if (!err) {
-        console.log(tableList);
         let formatTable = tableList.map((e) => {
           return e.employee_id;
         });
-        console.log(formatTable);
 
         if (tableList == [] || tableList == null || tableList == undefined) {
           res
@@ -235,7 +286,6 @@ module.exports.table = (req, res, next) => {
               res
                 .status(200)
                 .json({ status: true, replacementTable: formatList });
-              console.log(formatList);
             } else return next(err);
           });
         }
@@ -259,3 +309,15 @@ module.exports.tableEmployee = (req, res, next) => {
     } else return next(err);
   });
 };
+
+module.exports.updateAllEmployees = () => {
+  console.log("updating all employees");
+   EmployeesLogin.updateMany({}, { replacement: false },function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs);
+    }
+  });
+}

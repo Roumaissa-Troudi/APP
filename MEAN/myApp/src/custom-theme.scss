@@ -337,9 +337,15 @@ button.mat-mini-fab {
   height: 36px;
   width: 36px;
 }
-
-div.mat-menu-panel {
+div.mat-menu-panel{
   margin-top: 20px;
+}
+div.mat-menu-panel.hey {
+ margin-right: 30px;
+ margin-top: 0px;
+ height: 50%;
+ overflow: auto;
+ width: 250px;
 }
 
 .fa {

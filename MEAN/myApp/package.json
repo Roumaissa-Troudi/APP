@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
+    "@syncfusion/ej2-angular-dropdowns": "^18.4.47",
     "admin-lte": "3.0",
     "apexcharts": "^3.25.0",
     "bootstrap": "^4.6.0",

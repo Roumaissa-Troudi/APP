@@ -22,17 +22,46 @@ var employeeSchema = new mongoose.Schema({
     required: "Password can't be empty",
     minlength: [4, "Passsword must be at least 4 Character long"],
   },
-  role: {
+  notification: {
     type: String,
+    default: ""
+  },
+  role: {
+    type: String,default: ""
   },
   department: {
-    type: String,
+    type: String,default: ""
+  },
+  replacement: {
+    type: Boolean,
+    default: false
   },
   workstatus: {
     type: Boolean,
   },
+  workstation: {
+    type: Number,default: 0
+  },
   phoneNumber: {
-    type: Number,
+    type: Number,default: 0
+  },
+  address: {
+    type: String,default: ""
+  },
+  city : {
+    type: String,default: ""
+  },
+  country : {
+    type: String,default: ""
+  },
+  postalcode : {
+    type: Number,default: 0
+  },
+  supervisor: {
+    type: String,default: ""
+  },
+  aboutme: {
+    type: String,default: ""
   },
 });
 employeeSchema.plugin(passportLocalMongoose);

@@ -17,10 +17,10 @@ passport.use(
           .verifyPassword(password)
           .then((verif) => {
             if (verif) return done(null, user);
-            else return done(null, false, { message: " Wrong password" });
+            else return done(null, false, { message: " invalid Email or Password" });
           })
           .catch((err) => {
-            return done(null, false, { message: " Wrong password" });
+            return done(null, false, { message: "invalid Email or Password" });
           });
       }
     });

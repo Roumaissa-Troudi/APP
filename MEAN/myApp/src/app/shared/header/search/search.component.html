@@ -4,7 +4,30 @@
       <div class="input-group-prepend">
         <span class="input-group-text"><i class="fas fa-search"></i></span>
       </div>
-      <input class="form-control" placeholder="Search" type="text">
+      <input class="form-control" placeholder="Search" type="text" [matMenuTriggerFor]="searchMenu">
+
     </div>
   </div>
 </form>
+
+<mat-menu #searchMenu="matMenu" xPosition="before" class ="hey">
+  <button mat-menu-item class="user-menu__item-title" routerLink="{{routes.DASHBOARD}}" routerLinkActive="active" >
+    <mat-icon class="user-menu-icon">dashboard</mat-icon>Your Dashboard
+  </button>
+  <button mat-menu-item class="user-menu__item-title"  routerLink="{{routes.PROFILE}}"  routerLinkActive="active" >
+    <mat-icon class="user-menu-icon">person</mat-icon>Your Profile
+  </button>
+  <button mat-menu-item class="user-menu__item-title" routerLink="{{routes.WORKSTATUS}}"  routerLinkActive="active">
+    <mat-icon class="user-menu-icon">text_fields</mat-icon>Your Work Status
+  </button>
+  <button mat-menu-item class="user-menu__item-title" routerLink="{{routes.HEALTHSTATUS}}"  routerLinkActive="active">
+    <mat-icon class="user-menu-icon">text_fields</mat-icon>Your Health Status
+  </button>
+  <button mat-menu-item class="user-menu__item-title" routerLink="{{routes.TABLES}}" routerLinkActive="active">
+    <mat-icon class="user-menu-icon">border_all</mat-icon>Employee Table
+  </button>
+  <button mat-menu-item class="user-menu__item-title" routerLink="{{routes.NOTIFICATION}}" routerLinkActive="active">
+    <mat-icon class="user-menu-icon">notifications_none</mat-icon>Notifications
+  </button>
+
+</mat-menu>

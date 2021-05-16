@@ -699,8 +699,8 @@ textarea.form-control {
 
 .btn-default {
   color: #fff;
-  border-color: #edc7b7;
-  background-color: #edc7b7;
+  border-color: #b3476b;
+  background-color: #b3476b;
   box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
@@ -1071,6 +1071,24 @@ position: relative;
 color: white;
 }
 
+.chart1 {
+  border-radius: 3px;
+  margin-top: -20px;
+  padding: 15px;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(156 39 176 / 40%);
+  background: linear-gradient(
+  60deg
+  ,#cf9cad,#cf9cad);
+  margin: 0 15px;
+  margin-top: -20px;
+  position: relative;
+  color: white;
+
+}
+.phy_psy {
+ margin: 25px;
+ font-size: 20px;
+}
 .progress {
   font-size: .75rem;
   display: flex;

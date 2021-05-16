@@ -26,9 +26,10 @@ table {
   }
 
   &__content {
-    height: 427px;
-    overflow-y: hidden;
+    height: 800px;
+    overflow-y: auto;
     overflow-x: scroll;
+    padding: 15px;
 
     @media (max-width: $small) {
       height: auto;
@@ -36,7 +37,8 @@ table {
   }
 
   &__table {
-    width: 100%;
+    width: 90%;
+
   }
 
   &__table-row {
@@ -92,3 +94,4 @@ mat-menu {
 .declined {
   background-color: $pink;
 }
+

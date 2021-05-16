@@ -23,7 +23,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ChartsModule } from 'ng2-charts';
-
+import { MatIconModule } from '@angular/material/icon';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { AlertModule } from '../modules/alert/alert.module';
 
 @NgModule({
   declarations: [DefaultComponent, TablesComponent, DashboardComponent, HealthStatusComponent,WorkstatusComponent,UserprofileComponent,SearchReplacementComponent],
@@ -31,13 +35,13 @@ import { ChartsModule } from 'ng2-charts';
     CommonModule,
     SharedModule,
     MatSidenavModule,
-    RouterModule,
-    FlexLayoutModule,
-    MatToolbarModule,
+    RouterModule,MatSelectModule,
+    FlexLayoutModule,AlertModule,
+    MatToolbarModule,FormsModule,
     MatButtonModule,MatTabsModule,
-    MatDividerModule,MatCardModule,MatInputModule,
+    MatDividerModule,MatCardModule,MatInputModule,MatButtonToggleModule,
     MatFormFieldModule,MatTableModule,
-    MatSlideToggleModule,MatPaginatorModule,MatSortModule,ChartsModule
+    MatSlideToggleModule,MatPaginatorModule,MatSortModule,ChartsModule,MatIconModule,
 
   ],
   exports: [MatFormFieldModule,

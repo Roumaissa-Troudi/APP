@@ -14,9 +14,9 @@ router.get('/searchReplacement',jwtHelper.verifyJwtToken, ctrlemployee.search);
 router.get('/table',jwtHelper.verifyJwtToken, ctrlemployee.table);
 router.get('/workstatus',jwtHelper.verifyJwtToken, ctrlemployee.workstatus);
 router.get('/employeetable',jwtHelper.verifyJwtToken, ctrlemployee.tableEmployee);
-
+router.post('/workstation',jwtHelper.verifyJwtToken,ctrlemployee.workstation);
 router.post('/work',jwtHelper.verifyJwtToken, ctrlemployee.work);
-
+router.post('/configprofile',jwtHelper.verifyJwtToken, ctrlemployee.configProfile);
 
 
 module.exports = router;

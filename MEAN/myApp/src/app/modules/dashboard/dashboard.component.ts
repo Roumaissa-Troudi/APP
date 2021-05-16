@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { HealthStatus } from 'src/app/shared/healthstatus.service';
 import { Chart } from 'chart.js';
 import { EmployeeService } from '../../shared/employee.service';
-import { DatePipe  } from '@angular/common'
+import { DatePipe } from '@angular/common';
 
 export interface PeriodicElement {
   fullName: string;
@@ -24,9 +24,9 @@ export interface PeriodicElement2 {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  chart;
-  check;
-  phy;psy;dates;
+  chart1;
+  check;userDetails;
+chart2;
   replacementDetails;
   test;
   dataSource: MatTableDataSource<PeriodicElement>;
@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   pipe = new DatePipe('en-US');
 
   constructor(
@@ -47,7 +46,15 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.check = this.employeeservice.getEmployeeInfo();
+    this.employeeservice.getEmployeeProfile().subscribe(
+      (res) => {
+        this.userDetails = res['user'];
+        this.employeeservice.setEmployeeInfo(this.userDetails);
+        this.check=this.employeeservice.getEmployeeInfo();
+        console.log(this.check);
+      },
+      (err) => {}
+    );
 
     this.employeeservice.getEmployeeTable().subscribe(
       (res) => {
@@ -61,38 +68,118 @@ export class DashboardComponent implements OnInit {
       (res) => {
         this.dataSource2 = res['healthHistory'];
         console.log(this.dataSource2);
-        this.phy= res['healthHistory'].map (res => res.healthValuePhy);
+        let phy = res['healthHistory'].map((res) => res.healthValuePhy);
+        console.log(phy);
 
-        this.psy= res['healthHistory'].map (res => res.healthValuePsy);
-        let date= res['healthHistory'].map (res => res.date);
-        this.dates=[]
+        let psy = res['healthHistory'].map((res) => res.healthValuePsy);
+        let date = res['healthHistory'].map((res) => res.date);
+        let dates = [];
 
-        date.forEach((res)=> {
-          this.dates.push(this.pipe.transform(res,'shortDate'))
+        date.forEach((res) => {
+          dates.push(this.pipe.transform(res, 'shortDate'));
         });
-        console.log(this.dates);
+        console.log(dates);
+        this.chart1 = new Chart('canvas1', {
+          type: 'line',
+          data: {
+            labels: dates,
+            datasets: [
+              {
+                data: phy,
+                borderColor: 'white',
+                fill: false,
+                borderWidth: 5,
+              },
+            ],
+          },
+          options: {
+            responsive: true ,
+            legend: { display: false },
+
+
+            scales: {
+              yAxes: [
+                { gridLines: {
+                  display: true ,
+                  color: 'white'
+                },
+                  ticks: {
+                    max: 10,
+                    min: 0,
+                    stepSize: 1,
+                    fontColor: 'white'
+                  },
+                },
+              ],
+              xAxes: [
+                { gridLines: {
+                  display: true ,
+                  color: 'white',
+
+
+                },
+                  ticks: {
+
+                    fontColor: 'white'
+                  },
+                },
+              ]
+            },
+          },
+        });
+        this.chart2 = new Chart('canvas2', {
+          type: 'line',
+          data: {
+            labels: dates,
+            datasets: [
+              {
+                data: psy,
+                borderColor: 'white',
+                fill: false,
+                borderWidth: 5,
+              },
+            ],
+          },
+          options: {
+            legend: { display: false },
+            responsive: true ,
+
+            scales: {
+              yAxes: [
+                { gridLines: {
+                  display: true ,
+                  color: 'white'
+                },
+                  ticks: {
+                    max: 10,
+                    min: 0,
+                    stepSize: 1,
+                    fontColor: 'white'
+                  },
+                },
+              ],
+              xAxes: [
+                { gridLines: {
+                  display: true ,
+                  color: 'white',
+
+
+                },
+                  ticks: {
+
+                    fontColor: 'white'
+                  },
+                },
+              ]
+            },
+          },
+        });
       },
       (err) => {}
     );
-    this.chart = new Chart('canvas',{
-      type:'line',
-      data: {
-        labels: this.dates ,
-        datasets: [{
-          data: this.phy,
-          borderColor: 'red',
-          fill:false
-        }]
-      },
-      options: {
-        legend: { display: false}
 
-      }
-
-    })
     console.log('hello');
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-
   }
 }

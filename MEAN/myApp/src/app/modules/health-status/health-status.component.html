@@ -7,10 +7,13 @@
     <p class="chart__title">Are you physically overburdened ?</p>
   </div>
   <div class="chart__content">
-    <div class="slider">
-      <app-slider (healthvalue)="SethealthValuePhy($event)"></app-slider>
+    <div class="row">
+      <div><img src="/assets/img/phy.png" class="image" /></div>
+      <div class="slider">
+        <app-slider (healthvalue)="SethealthValuePhy($event)"></app-slider>
+      </div>
+      <div>  <img src="/assets/img/pain.png" class="image" /> </div>
     </div>
-
     <br />
     <br />
 
@@ -19,11 +22,15 @@
     <br />
   </div>
   <div class="chart__header">
-    <p class="chart__title">Are you psychically overburdened ?</p>
+    <p class="chart__title">Are you mentally overburdened ?</p>
   </div>
   <div class="chart__content">
+    <div class="row">
+      <div><img src="/assets/img/positive.png" class="image" /></div>
     <div class="slider">
       <app-slider (healthvalue)="SethealthValuePsy($event)"></app-slider>
+    </div>
+    <div><img src="/assets/img/negative.png" class="image" /></div>
     </div>
     <br />
     <br />
@@ -31,7 +38,7 @@
     <div class="value">Daily Value: {{ healthvaluePsy }}</div>
   </div>
   <br />
-    <br />
+  <br />
   <p>
     <button
       class="chart__button"

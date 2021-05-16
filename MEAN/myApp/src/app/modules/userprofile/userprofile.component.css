@@ -2030,3 +2030,12 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+
+.chartbutton{
+width: 300px;
+height: 40px;
+position: absolute;
+left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}

@@ -23,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { DefaultModule } from './default/default.module';
 import { HealthStatus } from './shared/healthstatus.service';
+import { NotificationComponent } from './modules/notification/notification.component';
+import { AlertModule } from './modules/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,9 @@ import { HealthStatus } from './shared/healthstatus.service';
     SignUpComponent,
     EmployeeProfileComponent,
     SignInComponent,
+    NotificationComponent,
+
+
 
 
 
@@ -48,7 +53,7 @@ import { HealthStatus } from './shared/healthstatus.service';
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
-    DefaultModule
+    DefaultModule,AlertModule
 
 
   ],

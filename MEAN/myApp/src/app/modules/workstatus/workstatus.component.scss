@@ -32,7 +32,7 @@
   }
 
   &__content {
-    height: 380px;
+    height: 600px;
     width: 100%;
     @media (max-width: $small) {
       overflow-x: scroll;
@@ -46,7 +46,19 @@
   }
 
 }
+mat-form-field {
+  width: 250px;
+height: 75px;
+}
+.choose{
+  font-size: 10pt;
 
+  position: relative;
+  left:40%;
+  top: 300px;
+  width: fit-content;
+
+}
 .yellow {
   background-color: $yellow;
 }
@@ -58,7 +70,9 @@
 .light-blue {
   background-color: $white-blue;
 }
-
+.mat-select-arrow-wrapper {
+  padding-left: 75px;
+}
 
 .value {
   font-weight: $fw-normal;
@@ -73,10 +87,39 @@
     font-size: $fs-regular;
     color: $grey;
 }
-
-.slider {
-  margin: 10px;
+.row {
+  display: flex;
   position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+}
+.btn {
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+  margin-left: 40px;
+  padding: 0px;
+  vertical-align: top;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+
+}
+.mat-button-toggle-group {
+  border: none;
+}
+.icon {
+ font-size: 150px;
+ width: auto;
+ color: #11cdef;
+ vertical-align: bottom;
+ padding-top: 45px;
+ text-align: center;
+
+}
+.button {
+  top: 400px;
+  position: relative;
   left: 50%;
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);

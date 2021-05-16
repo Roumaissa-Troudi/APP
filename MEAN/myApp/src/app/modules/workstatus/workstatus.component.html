@@ -6,15 +6,52 @@
     <p class="chart__title">Are you available ?</p>
   </div>
   <div class="chart__content">
-    <div>
-      <mat-slide-toggle
-        [checked]="checked"
-        (change)="changed()"
-        class="slider"
-      ></mat-slide-toggle>
-      <br />
-      <br />
-      <div class="message">{{ showMessage }}</div>
+    <div class="row">
+      <mat-button-toggle-group >
+      <mat-button-toggle class="btn" mat-raised-button (click)="workeed()" value="true"><mat-icon class="icon">work</mat-icon></mat-button-toggle>
+      <mat-button-toggle class="btn" mat-raised-button (click)="notworkeed()" value="false"><mat-icon class="icon">home</mat-icon></mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+
+
+
+
     </div>
-  </div>
+      <mat-divider></mat-divider>
+<div *ngIf="checked== true" class="choose">
+<!-- <mat-form-field appearance="fill" *ngIf="checked== true" class="choose">
+  <mat-label>Choose your workstation</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let Worstation of Worstations" [value]="Worstations.value">
+      {{Worstations.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field> -->
+<mat-form-field appearance="fill" >
+  <mat-label>Choose your workstation</mat-label>
+  <mat-select [(value)]="selected" [formControl]="workstationControl" required >
+    <mat-option>--</mat-option>
+    <mat-option [value]="Worstation.viewValue" *ngFor="let Worstation of Worstations" >
+      {{Worstation.viewValue}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="workstationControl.hasError('required')">Please choose a workstation</mat-error>
+
+</mat-form-field>
+<p>Your workstation: {{selected}}</p>
+</div>
+<div>
+    <button
+      class="button"
+
+      mat-raised-button
+      color="primary"
+      [disabled]="clicked"
+      (click)="changed();
+      clicked = true;"
+    >
+      submit
+    </button>
+  </div></div>
 </div>
