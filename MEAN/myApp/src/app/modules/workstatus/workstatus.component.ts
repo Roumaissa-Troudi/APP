@@ -81,7 +81,7 @@ selected:number;
       (res) => {
         console.log(res);
         this.alertService.success('Work status updated', this.options);
-        setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
+        setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),3000);
       },
       (err) => {}
     );
@@ -91,7 +91,7 @@ selected:number;
         (res) => {
           console.log(res);
           this.alertService.success('You are at home!', this.options);
-        setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
+        setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),3000);
         },
         (err) => {}
       );
@@ -102,13 +102,13 @@ selected:number;
         (res) => {
           console.log(res);
           this.alertService.success('Workstation updated', this.options);
-          setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
+          setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),3000);
         },
         (err) => {}
       );
     } else if ( this.firstvalue == this.workvalue && this.workvalue ==false) {
       this.alertService.success('Still at home!', this.options);
-      setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),4000);
+      setTimeout(() => this.route.navigateByUrl('/dashboard/dashboard'),3000);
 
     }
   }

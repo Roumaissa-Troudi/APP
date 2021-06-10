@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "MEAN stack myApp",
   "main": "app.js",
-  "start": "node app.js",
+  
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "author": "Roumaissa Troudi",
   "license": "ISC",
